@@ -9,15 +9,16 @@ Implemented and validated locally:
 - Vitest and React Testing Library: 12 tests passed across 4 files.
 - TypeScript and ESLint passed. Optimized production build passed.
 - Antfu ESLint, lint-staged, Conventional Commit validation, and simple-git-hooks are configured and verified.
-- Public GitHub repository created at https://github.com/robertwang1001/chinese-lunar-todoist with the initial commit on `main`.
+- Public GitHub repository created at https://github.com/robertwang1001/chinese-lunar-todoist; commit `308a4e9` is pushed to `main`.
 - Vercel project `chinese-lunar-todoist` created in the `robertwangs-projects` scope.
+- Production deployment succeeded at https://chinese-lunar-todoist.vercel.app for commit `308a4e9`.
+- Production HTTP check: homepage 200; OAuth missing configuration 503 as expected.
 - Local production HTTP check: homepage 200; OAuth missing configuration 503; task mutation without session 401; cross-origin mutation 403.
 
 External setup remains blocked:
 
-- The local GitHub CLI token is invalid. The connected GitHub integration can see the repository with push permission, but the latest local tooling changes have not yet been pushed.
-- Vercel project reads work, but deployment listing and deployment operations return 403 for scope `robertwangs-projects`. The local Vercel CLI also has no usable authenticated session.
-- No deployment URL or remote build status is available.
+- The local GitHub CLI token is invalid, although Git pushes through the configured Git credential work.
+- Fine-grained Vercel project reads still return 403 for scope `robertwangs-projects`; deployment state is available through the GitHub commit status.
 - Todoist OAuth credentials are not configured. Real OAuth and Todoist calls have not been tested; API behavior is covered with mocks.
 
 Initial product limits:
