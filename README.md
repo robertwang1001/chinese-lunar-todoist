@@ -8,7 +8,7 @@ Next.js 16, React 19, TypeScript, Tailwind CSS 4, shadcn/ui-style Button with CV
 
 ## Local development
 
-Use Node 22.14+ (or Node 24) and pnpm 11.25.0.
+Use Node 24 and pnpm 11.25.0.
 
 ```bash
 pnpm install --frozen-lockfile
@@ -24,6 +24,15 @@ pnpm exec tsc --noEmit
 pnpm lint
 pnpm build
 ```
+
+## Code quality and Git hooks
+
+Antfu ESLint handles linting and formatting. Run `pnpm lint` to check the project or `pnpm lint:fix` to apply safe fixes. `simple-git-hooks` installs these repository hooks through the package `prepare` script:
+
+- `pre-commit` runs lint-staged, applying ESLint fixes only to supported staged files.
+- `commit-msg` runs commitlint with the Conventional Commits preset, for example `feat: add event export`.
+
+pnpm supply-chain validation remains enabled. Two existing, exact transitive versions are explicitly excluded from the trust-downgrade check: `semver@6.3.1` and `undici-types@6.21.0`.
 
 ## Todoist OAuth
 

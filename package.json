@@ -2,11 +2,17 @@
   "name": "chinese-lunar-todoist",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": "24"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "simple-git-hooks",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -23,8 +29,13 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.0.0",
+    "@antfu/eslint-config": "^9.5.1",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "@eslint-react/eslint-plugin": "^5.28.0",
+    "@next/eslint-plugin-next": "^16.4.2",
     "@tailwindcss/postcss": "^4.0.0",
+    "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.0.0",
     "@types/node": "^22.0.0",
@@ -32,15 +43,24 @@
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.0",
     "eslint": "^9.0.0",
-    "eslint-config-next": "^16.4.2",
+    "eslint-plugin-react-refresh": "^0.5.7",
     "jsdom": "^26.0.0",
+    "lint-staged": "^17.6.0",
+    "simple-git-hooks": "^2.14.0",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0",
-    "vitest": "^3.0.0",
-    "@testing-library/dom": "^10.4.2"
+    "vitest": "^3.0.0"
   },
-  "packageManager": "pnpm@11.25.0",
-  "engines": {
-    "node": ">=22.14.0"
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "pnpm exec commitlint --edit \"$1\""
+  },
+  "lint-staged": {
+    "*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,json,jsonc,yaml,yml,md,mdx}": "eslint --fix"
   }
 }
