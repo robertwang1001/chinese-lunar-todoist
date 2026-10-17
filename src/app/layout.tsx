@@ -3,8 +3,12 @@ import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Chinese Lunar Calendar for Todoist',
-  description: 'Generate lunar recurring events as Todoist tasks',
+  title: 'Chinese Lunar Todoist',
+  description: 'Turn Chinese lunar dates into clear, ready-to-use Todoist tasks.',
+  icons: {
+    icon: '/favicon.png?v=2',
+    apple: '/chinese-lunar-todoist-logo.png',
+  },
 }
 export default function RootLayout({
   children,

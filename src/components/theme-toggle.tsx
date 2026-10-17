@@ -20,6 +20,7 @@ export function ThemeToggle() {
       aria-label="Toggle color theme"
       className="size-9 rounded-full p-0"
       onClick={toggleTheme}
+      title="Toggle color theme"
       type="button"
       variant="outline"
     >

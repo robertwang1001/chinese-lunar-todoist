@@ -1,4 +1,4 @@
-# Chinese Lunar Calendar for Todoist
+# Chinese Lunar Todoist
 
 A free, database-free Next.js App Router app. Configure one saved lunar event at a time, preview up to 20 Gregorian occurrences and explicitly create or update ordinary Todoist tasks. No cron, database, paid service, or automatic renewal.
 
@@ -37,6 +37,13 @@ Antfu ESLint handles linting and formatting. Run `pnpm lint` to check the projec
 pnpm supply-chain validation remains enabled. Two existing, exact transitive versions are explicitly excluded from the trust-downgrade check: `semver@6.3.1` and `undici-types@6.21.0`.
 
 ## Todoist OAuth
+
+### App Management Console fields
+
+- **Service URL:** `https://chinese-lunar-todoist.vercel.app`
+- **App description:** `Chinese Lunar Todoist converts Chinese lunar calendar dates into Todoist tasks with all-day due dates, due times, or deadlines. Preview Gregorian dates, create a one-time or yearly lunar task, and manage its future occurrences. Chinese Lunar Todoist is not created by, affiliated with, or supported by Todoist.`
+- **App icon:** `public/brand/lunar-planner-integration-512.png` (upload this file in the console)
+- **UI Extensions:** leave this section empty. This project is a standalone OAuth web integration and does not inject cards, menus, or composer controls into the Todoist interface.
 
 Register an application in https://developer.todoist.com/appconsole.html. Set the exact redirect URI to `https://YOUR-DOMAIN/api/auth/callback`; add `http://localhost:3000/api/auth/callback` for local testing. Configure the following server-only values in `.env.local` and Vercel environment settings:
 
