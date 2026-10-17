@@ -5,6 +5,7 @@ Implemented and validated locally:
 - Next.js App Router, TypeScript, Tailwind, local shadcn-style UI component, pnpm lockfile.
 - Finite lunar recurrence preview; leap-month and missing-day skipping.
 - Todoist OAuth with encrypted HTTP-only session cookies, state validation, same-origin mutation checks, and no browser-visible secrets.
+- Server-side Todoist access-token refresh with encrypted refresh-token rotation for new OAuth applications.
 - Static task creation and unfinished task updates; known completed/deleted tasks skipped; pagination; stable retry request IDs; partial results returned on errors.
 - Vitest and React Testing Library: 12 tests passed across 4 files.
 - TypeScript and ESLint passed. Optimized production build passed.
@@ -26,5 +27,5 @@ Initial product limits:
 
 - One locally saved event configuration, no cross-device sync or event collection.
 - Missing leap months/day 30 are skipped; finite search through lunar year 2100.
-- User reconnects when the access token expires; refresh-token rotation is not implemented.
+- Local OAuth sessions expire after seven days; users reconnect if the session expires or token refresh fails.
 - Browser storage and stable task markers aid tracking but cannot guarantee global exactly-once creation across browser data loss or concurrent tabs.

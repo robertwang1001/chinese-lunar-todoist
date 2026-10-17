@@ -46,7 +46,7 @@ Register an application in https://developer.todoist.com/appconsole.html. Set th
 
 Never commit real credentials or use NEXT_PUBLIC_ variables for secrets. Redeploy after setting environment variables. Requests use Todoist API v1 and OAuth `data:read_write`; the app never asks users for a personal API token. Official reference: https://developer.todoist.com/api/v1/.
 
-OAuth state is single-use with a 10-minute HTTP-only cookie. Access tokens are encrypted in an authenticated HTTP-only SameSite=Lax cookie (Secure in production). Mutating routes require the canonical Origin. Sessions expire at the earlier of the token expiry and seven days. This minimal implementation deliberately reconnects when the access token expires; it does not store or rotate refresh tokens. Newly registered Todoist apps may require reconnection after one hour. No token is exposed to browser JavaScript. Disconnect removes the local cookie; revoke access in Todoist to invalidate the grant.
+OAuth state is single-use with a 10-minute HTTP-only cookie. Access and refresh tokens are encrypted in an authenticated HTTP-only SameSite=Lax cookie (Secure in production). Mutating routes require the canonical Origin. Short-lived access tokens are refreshed server-side and rotated when Todoist returns a replacement refresh token. The local session lasts up to seven days; reconnect if it expires or refresh fails. No token is exposed to browser JavaScript. Disconnect removes the local cookie; revoke access in Todoist to invalidate the grant.
 
 ## Recurrence and update rules
 

@@ -2,7 +2,7 @@ import type { NextRequest } from 'next/server'
 import process from 'node:process'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { cookieOptions, origin, seal } from '@/lib/session'
+import { cookieOptions, origin, seal, sessionMaxAge } from '@/lib/session'
 
 export async function GET(req: NextRequest) {
   const jar = await cookies()
@@ -29,16 +29,30 @@ export async function GET(req: NextRequest) {
     })
     if (!response.ok)
       throw new Error('Authorization failed')
-    const data = await response.json()
-    if (typeof data.access_token !== 'string')
+    const data: unknown = await response.json()
+    if (
+      !data
+      || typeof data !== 'object'
+      || !('access_token' in data)
+      || typeof data.access_token !== 'string'
+    ) {
       throw new Error('Missing token')
-    const maxAge = Math.min(
-      604800,
-      typeof data.expires_in === 'number' ? data.expires_in : 604800,
-    )
-    jar.set('todoist_session', await seal(data.access_token, maxAge), {
+    }
+    const expiresIn
+      = 'expires_in' in data && typeof data.expires_in === 'number'
+        ? data.expires_in
+        : sessionMaxAge
+    const refreshToken
+      = 'refresh_token' in data && typeof data.refresh_token === 'string'
+        ? data.refresh_token
+        : undefined
+    jar.set('todoist_session', await seal({
+      accessToken: data.access_token,
+      expiresAt: Date.now() + expiresIn * 1000,
+      refreshToken,
+    }), {
       ...cookieOptions,
-      maxAge,
+      maxAge: sessionMaxAge,
     })
     return NextResponse.redirect(origin())
   }
