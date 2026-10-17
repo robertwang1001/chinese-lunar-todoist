@@ -9,6 +9,7 @@ Implemented and validated locally:
 - Vitest and React Testing Library: 12 tests passed across 4 files.
 - TypeScript and ESLint passed. Optimized production build passed.
 - Antfu ESLint, lint-staged, Conventional Commit validation, and simple-git-hooks are configured and verified.
+- Responsive shadcn-style planner UI with semantic theme tokens and persistent light/dark mode.
 - Public GitHub repository created at https://github.com/robertwang1001/chinese-lunar-todoist; commit `308a4e9` is pushed to `main`.
 - Vercel project `chinese-lunar-todoist` created in the `robertwangs-projects` scope.
 - Production deployment succeeded at https://chinese-lunar-todoist.vercel.app for commit `308a4e9`.

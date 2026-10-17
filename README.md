@@ -4,7 +4,9 @@ A free, database-free Next.js App Router app. Configure one saved lunar event at
 
 ## Stack
 
-Next.js 16, React 19, TypeScript, Tailwind CSS 4, shadcn/ui-style Button with CVA and shadcn component configuration, lunar-typescript, Zod, jose, Vitest and React Testing Library. The Button is locally maintained and intentionally has no Slot dependency.
+Next.js 16, React 19, TypeScript, Tailwind CSS 4, locally maintained shadcn/ui-style Button, Card, Input, and Label primitives, lunar-typescript, Zod, jose, Vitest and React Testing Library. Components intentionally avoid a Slot dependency.
+
+The interface uses semantic shadcn-style color tokens and supports light, dark, and first-visit system themes. The header toggle persists the selected theme in browser storage.
 
 ## Local development
 
